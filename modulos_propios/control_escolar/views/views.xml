@@ -1,0 +1,31 @@
+<odoo>
+  <data>
+        <record id="alumnos_tree_view" model="ir.ui.view">
+            <field name="name">alumnos.tree.view</field>
+            <field name="model">control_escolar.alumnos</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="nombre"/>
+                    <field name="apellido_materno"/>
+                    <field name="apellido_paterno"/>
+                    <field name="sexo"/>
+                    <field name="edad"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="control_escolar.action_menu_alumnos" model="ir.actions.act_window">
+            <field name="name">Alumnos</field>
+            <field name="res_model">control_escolar.alumnos</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="alumnos_tree_view"/>
+        </record>
+
+        <menuitem id="menu_base_control_escolar" name="Control Escolar" groups="base.group_user"/>
+
+        <menuitem id="control_escolar.menu_item_control_escolar" name="Control" parent="menu_base_control_escolar" sequence="0"/>
+
+        <menuitem id="control_escolar.menu_alumnos" name="Alumnos" parent="control_escolar.menu_item_control_escolar" sequence="0"
+                  action="action_menu_alumnos"/>
+  </data>
+</odoo>

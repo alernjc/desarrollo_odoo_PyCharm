@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+   <!-- Primero, tenemos la vista formulario con la siguiente estructura
+    <record id="" model="ir.ui.view">
+      <field name="name"></field>
+      <field name="model"></field>
+      <field name="arch" type="xml">
+        <form string="">
+          <sheet>
+            <group name="group_top">
+              <group name="group_left">
+
+              </group>
+              <group name="group_right">
+
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    -->
+    <!-- Primero, tenemos la vista formulario -->
+
+    <record id="view_custom_crm_visit_form" model="ir.ui.view">     <!-- el id de la vista estandar: view_nombredelmodulo_nombredelaentidad_tipodevista (form, tree,...)-->
+      <field name="name">view.custom_crm.visit.form</field>         <!-- el nombre de la vista se lo ponemos como view pero separado por puntos-->
+      <field name="model">custom_crm.visit</field>                  <!-- el nombre del modelo será igual que en el models, para que se puedan enlazar los datos correctamente -->
+      <field name="arch" type="xml">
+        <form string="Visita">                                      <!-- el nombre que le damos al formulario -->
+          <sheet>                                                   <!-- representa la pestaña (hoja) que vemos de los datos -->
+            <group name="group_top">                                <!-- agrupamos los datos (parte izquierda / parte derecha) en la hoja -->
+              <group name="group_left">
+                  <field name="customer" />
+                  <field name="date" />
+                  <field name="type" />
+              </group>
+              <group name="group_right">
+                  <field name="name" />
+                  <field name="done" />
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Segundo, tendremos la vista tree con la siguiente estructura
+    <record id="" model="ir.ui.view">
+      <field name="name"></field>
+      <field name="model"></field>
+      <field name="arch" type="xml">
+        <tree string="">
+
+        </tree>
+      </field>
+    </record>
+    -->
+    <!-- Segundo, tendremos la vista tree -->
+
+    <record id="view_custom_crm_visit_tree" model="ir.ui.view">
+      <field name="name">view.custom_crm.visit.tree</field>
+      <field name="model">custom_crm.visit</field>
+      <field name="arch" type="xml">
+        <tree string="Visita">                                              <!-- Tenemos el módulo tree, donde mostraremos las columnas -->
+            <field name="customer" />
+            <field name="name" />
+            <field name="type" />
+            <field name="date" />
+        </tree>
+      </field>
+    </record>
+
+
+    <!-- ACCIÓN DEL MENÚ: ha de declararse sobre el menú, aunque lo fabricamos de último
+    <record id="" model="ir.actions.act_window">
+        <field name="name"></field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model"></field>
+        <field name="view_model">tree, form</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+              Custom
+          </p>
+          <p>
+              Click 'Nuevo' para añadir nuevos elementos
+          </p>
+        </field>
+    </record>
+    -->
+
+    <!-- ACCIÓN DEL MENÚ: ha de declararse sobre el menú, aunque lo fabricamos de último -->
+    <record id="action_custom_crm_visit_view" model="ir.actions.act_window">   <!-- seguimos utilizando la nomenclatura añadiendo action al principio -->
+        <field name="name">action.custom_crm.visit.view</field>
+        <field name="type">ir.actions.act_window</field>                       <!-- el type lo dejamos tal cual -->
+        <field name="res_model">custom_crm.visit</field>
+        <field name="view_model">tree, form</field>
+
+        <field name="help" type="html">                         <!--Utilizamos help para mostrar info cuando no tenemos registros -->
+          <p class="oe_view_nocontent_create">
+              Visitas
+          </p>
+          <p>
+              Click 'Nuevo' para añadir nuevos elementos
+          </p>
+        </field>
+    </record>
+
+
+    <!-- Tercero, fabricamos el menú / Va en tres niveles, menú general, menú superior y menú lateral -->
+
+    <menuitem id="menu_custom_crm_root" name="Custom CRM" sequence="10"  />  <!-- sequence hace alusión al ordinal en el que va a estar el menú.
+                                                                                 Lo ponemos a 10 para que salga de los de abajo y lo podamos identificar a la primera-->
+
+      <menuitem id="menu_custom_crm_visit_categ" name="Operaciones" parent="menu_custom_crm_root" sequence="0" />   <!-- sequence=0 para que salga el primero -->
+
+          <menuitem id="menu_custom_crm_visit" name="Visitas" parent="menu_custom_crm_visit_categ" sequence="0" action="action_custom_crm_visit_view" />
+                                                  <!-- lo importante en este nivel es darle la acción al menú, que nos redirija a una vista concreta -->
+                                                  <!-- Las acciones se definen también por medio de un record y nos permitirá enlazar las vistas con el elemento de menú -->
+
+  </data>
+</odoo>
