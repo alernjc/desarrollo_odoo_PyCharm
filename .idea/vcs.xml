@@ -2,8 +2,6 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/modulos_propios/desarrollo_odoo" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/odoo" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/odoo13/odoo" vcs="Git" />
   </component>
 </project>

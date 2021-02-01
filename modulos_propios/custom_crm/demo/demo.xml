@@ -33,9 +33,10 @@
         <record id="visit0" model="custom_crm.visit">
             <field name="name">Visita Demo</field>
             <field name="customer">Cliente Demo</field>
-            <field name="date">2020-01-01</field>
+            <field name="date">2021-01-01</field>
             <field name="type">P</field>
             <field name="done">1</field>
+
         </record>
     </data>
 </odoo>
