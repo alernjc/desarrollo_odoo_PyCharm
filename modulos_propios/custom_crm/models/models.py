@@ -38,5 +38,3 @@ class Visit(models.Model):
 
 
 
-
-
