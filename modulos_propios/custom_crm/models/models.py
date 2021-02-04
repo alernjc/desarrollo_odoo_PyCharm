@@ -30,8 +30,11 @@ class Visit(models.Model):
      # vamos a crear una accion que modifique un campo
 
      def action_cambiarName(self):
-          if self.name:
-               self.name = 'Descripción: ' + self.name
+          if self.customer.name_get():
+              customer_name = self.customer.name_get()[0]
+              nombre_cliente = str(customer_name[1])
+              if self.name:
+                    self.name = 'Cliente: ' + nombre_cliente + ' - Descripción: ' + self.name
 
 
 
