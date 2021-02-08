@@ -33,6 +33,7 @@
                             <group name="group_right">
                                 <field name="name"/>
                                 <field name="done"/>
+                                <field name="customer_description"/>
                             </group>
                         </group>
                     </sheet>
